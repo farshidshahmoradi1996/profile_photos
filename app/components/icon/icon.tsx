@@ -1,19 +1,13 @@
 import * as React from "react"
-import { View, Image, ImageStyle } from "react-native"
-import { IconProps } from "./icon.props"
-import { icons } from "./icons"
 
-const ROOT: ImageStyle = {
-  resizeMode: "contain",
-}
+import { IconProps } from "./icon.props"
+
+import RNVIcon from "react-native-vector-icons/MaterialCommunityIcons"
+
+import { color } from "theme"
 
 export function Icon(props: IconProps) {
-  const { style: styleOverride, icon, containerStyle } = props
-  const style: ImageStyle = { ...ROOT, ...styleOverride }
+  const { style, name, color: colorProp = color.dim, size = 25 } = props
 
-  return (
-    <View style={containerStyle}>
-      <Image style={style} source={icons[icon]} />
-    </View>
-  )
+  return <RNVIcon name={name} size={size} color={colorProp} style={style} />
 }

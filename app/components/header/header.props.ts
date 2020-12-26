@@ -15,17 +15,15 @@ export interface HeaderProps {
   /**
    * Icon that should appear on the left
    */
-  leftIcon?: IconTypes
 
   /**
    * What happens when you press the left icon
    */
-  onLeftPress?(): void
 
   /**
    * Icon that should appear on the right
    */
-  rightIcon?: IconTypes
+  rightBtnText?: string
 
   /**
    * What happens when you press the right icon
@@ -41,4 +39,8 @@ export interface HeaderProps {
    * Title style overrides.
    */
   titleStyle?: TextStyle
+
+  backButton?: boolean
+  onBackButtonPress?(): void
+  backButtonColor?: string
 }

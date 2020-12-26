@@ -14,12 +14,10 @@ export interface TextFieldProps extends TextInputProps {
   /**
    * The label i18n key.
    */
-  labelTx?: string
 
   /**
    * The label text if no labelTx is provided.
    */
-  label?: string
 
   /**
    * Optional container style overrides useful for margins & padding.
@@ -37,4 +35,5 @@ export interface TextFieldProps extends TextInputProps {
   preset?: "default"
 
   forwardedRef?: any
+  error?: string
 }

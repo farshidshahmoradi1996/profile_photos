@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "android": "npx react-native run-android",
+    "ios": "npx react-native run-ios",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint index.js app storybook test --fix --ext .js,.ts,.tsx",
@@ -24,10 +24,14 @@
     "adb": "adb reverse tcp:9090 tcp:9090 && adb reverse tcp:3000 tcp:3000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
+    "@hookform/resolvers": "^1.2.0",
     "@react-native-community/async-storage": "^1.11.0",
+    "@react-native-community/cameraroll": "^4.0.1",
+    "@react-native-community/datetimepicker": "^3.0.8",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.1.5",
     "apisauce": "1.1.2",
+    "babel-plugin-module-resolver": "^4.1.0",
     "i18n-js": "^3.0.11",
     "lodash.throttle": "4.1.1",
     "mobx": "^4.15.4",
@@ -35,17 +39,22 @@
     "mobx-state-tree": "^3.14.1",
     "ramda": "0.27.1",
     "react": "16.13.1",
+    "react-hook-form": "^6.13.1",
     "react-native": "0.63.2",
+    "react-native-camera": "^3.40.0",
     "react-native-gesture-handler": "^1.5.0",
+    "react-native-image-crop-picker": "^0.35.2",
     "react-native-keychain": "6.1.1",
     "react-native-localize": "^1.0.0",
     "react-native-safe-area-context": "0.7.3",
     "react-native-safe-area-view": "1.1.1",
     "react-native-screens": "^2.10.1",
     "react-native-splash-screen": "3.2.0",
+    "react-native-vector-icons": "7.0.0",
     "reactotron-mst": "^3.1.1",
     "reactotron-react-native": "^5.0.0",
-    "validate.js": "0.13.1"
+    "validate.js": "0.13.1",
+    "yup": "^0.32.8"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -104,7 +113,7 @@
     ]
   },
   "prettier": {
-    "printWidth": 100,
+    "printWidth": 80,
     "semi": false,
     "singleQuote": false,
     "trailingComma": "all"
@@ -166,7 +175,8 @@
       "@typescript-eslint/no-explicit-any": 0,
       "@typescript-eslint/no-object-literal-type-assertion": 0,
       "@typescript-eslint/no-empty-interface": 0,
-      "@typescript-eslint/no-var-requires": 0
+      "@typescript-eslint/no-var-requires": 0,
+      "no-inline-styles": false
     }
   }
 }

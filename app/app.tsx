@@ -14,14 +14,8 @@ import "./utils/ignore-warnings"
 import React, { useState, useEffect, useRef } from "react"
 import { NavigationContainerRef } from "@react-navigation/native"
 import { SafeAreaProvider, initialWindowSafeAreaInsets } from "react-native-safe-area-context"
-import * as storage from "./utils/storage"
-import {
-  useBackButtonHandler,
-  RootNavigator,
-  canExit,
-  setRootNavigation,
-  useNavigationPersistence,
-} from "./navigation"
+
+import { useBackButtonHandler, RootNavigator, canExit, setRootNavigation } from "./navigation"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models"
 
 // This puts screens in a native ViewController or Activity. If you want fully native
@@ -41,10 +35,6 @@ function App() {
 
   setRootNavigation(navigationRef)
   useBackButtonHandler(navigationRef, canExit)
-  const { initialNavigationState, onNavigationStateChange } = useNavigationPersistence(
-    storage,
-    NAVIGATION_PERSISTENCE_KEY,
-  )
 
   // Kick off initial async loading actions, like loading fonts and RootStore
   useEffect(() => {
@@ -63,11 +53,7 @@ function App() {
   return (
     <RootStoreProvider value={rootStore}>
       <SafeAreaProvider initialSafeAreaInsets={initialWindowSafeAreaInsets}>
-        <RootNavigator
-          ref={navigationRef}
-          initialState={initialNavigationState}
-          onStateChange={onNavigationStateChange}
-        />
+        <RootNavigator ref={navigationRef} />
       </SafeAreaProvider>
     </RootStoreProvider>
   )

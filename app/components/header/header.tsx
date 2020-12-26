@@ -4,8 +4,9 @@ import { HeaderProps } from "./header.props"
 import { Button } from "../button/button"
 import { Text } from "../text/text"
 import { Icon } from "../icon/icon"
-import { spacing } from "../../theme"
+import { color, spacing } from "../../theme"
 import { translate } from "../../i18n/"
+import { useNavigation } from "@react-navigation/native"
 
 // static styles
 const ROOT: ViewStyle = {
@@ -26,33 +27,32 @@ const RIGHT: ViewStyle = { width: 32 }
  */
 export function Header(props: HeaderProps) {
   const {
-    onLeftPress,
     onRightPress,
-    rightIcon,
-    leftIcon,
+    rightBtnText,
+
     headerText,
     headerTx,
     style,
     titleStyle,
+    backButton = false,
+    onBackButtonPress,
+    backButtonColor = color.dim,
   } = props
+  const navigation = useNavigation()
   const header = headerText || (headerTx && translate(headerTx)) || ""
 
   return (
     <View style={{ ...ROOT, ...style }}>
-      {leftIcon ? (
-        <Button preset="link" onPress={onLeftPress}>
-          <Icon icon={leftIcon} />
+      {backButton && (
+        <Button preset="icon" onPress={onBackButtonPress || navigation.goBack}>
+          <Icon name="arrow-left" color={backButtonColor} />
         </Button>
-      ) : (
-        <View style={LEFT} />
       )}
       <View style={TITLE_MIDDLE}>
         <Text style={{ ...TITLE, ...titleStyle }} text={header} />
       </View>
-      {rightIcon ? (
-        <Button preset="link" onPress={onRightPress}>
-          <Icon icon={rightIcon} />
-        </Button>
+      {rightBtnText ? (
+        <Button preset="link" text={rightBtnText} onPress={onRightPress} />
       ) : (
         <View style={RIGHT} />
       )}

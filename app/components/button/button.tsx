@@ -4,7 +4,8 @@ import { Text } from "../text/text"
 import { viewPresets, textPresets } from "./button.presets"
 import { ButtonProps } from "./button.props"
 import { mergeAll, flatten } from "ramda"
-
+const withhitSlop = { bottom: 10, left: 10, right: 10, top: 10 }
+const withouthitSlop = { bottom: 0, left: 0, right: 0, top: 0 }
 /**
  * For your text displaying needs.
  *
@@ -30,7 +31,11 @@ export function Button(props: ButtonProps) {
   const content = children || <Text tx={tx} text={text} style={textStyle} />
 
   return (
-    <TouchableOpacity style={viewStyle} {...rest}>
+    <TouchableOpacity
+      hitSlop={preset === "icon" ? withhitSlop : withouthitSlop}
+      style={viewStyle}
+      {...rest}
+    >
       {content}
     </TouchableOpacity>
   )
